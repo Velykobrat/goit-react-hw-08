@@ -1,0 +1,19 @@
+/* App.module.css */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  /* Центрує контейнер по горизонталі */
+  padding: 20px;
+  text-align: center;
+  /* Центрує текст всередині контейнера */
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.error {
+  color: red;
+}
