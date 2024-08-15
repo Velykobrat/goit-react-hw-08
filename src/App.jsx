@@ -15,7 +15,7 @@ const App = () => {
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(refreshUser()); // Відновлення статусу авторизації при запуску
   }, [dispatch]);
 
   return isRefreshing ? (

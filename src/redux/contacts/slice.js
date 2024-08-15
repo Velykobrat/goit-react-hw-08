@@ -1,4 +1,3 @@
-// src/redux/contacts/slice.js
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
@@ -8,6 +7,11 @@ const contactsSlice = createSlice({
     items: [],
     loading: false,
     error: null,
+  },
+  reducers: {
+    clearContacts(state) {
+      state.items = []; // Очищення списку контактів
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,10 +54,12 @@ const contactsSlice = createSlice({
   },
 });
 
+// Експортуйте action для очищення контактів
+export const { clearContacts } = contactsSlice.actions;
+
 // Додайте селектор для відфільтрованих контактів
 export const selectFilteredContacts = (state) => {
   // Впровадьте вашу логіку фільтрації тут
-  // Приклад: return state.contacts.items; (Змінюйте за потребою)
   return state.contacts.items;
 };
 
