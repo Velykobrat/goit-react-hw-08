@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Імплементуйте BrowserRouter як Router
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from './redux/auth/operations';
 import Layout from './components/Layout';
@@ -21,22 +21,36 @@ const App = () => {
   return isRefreshing ? (
     <p>Loading...</p>
   ) : (
-    <Router> {/* Обгорніть Routes в Router */}
+    <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route
             path="/register"
-            element={<RestrictedRoute redirectTo="/contacts" component={<RegistrationPage />} />}
+            element={
+              <RestrictedRoute redirectTo="/contacts">
+                <RegistrationPage />
+              </RestrictedRoute>
+            }
           />
           <Route
             path="/login"
-            element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />}
+            element={
+              <RestrictedRoute redirectTo="/contacts">
+                <LoginPage />
+              </RestrictedRoute>
+            }
           />
           <Route
             path="/contacts"
-            element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />}
+            element={
+              <PrivateRoute redirectTo="/login">
+                <ContactsPage />
+              </PrivateRoute>
+            }
           />
+          {/* Додайте маршрут для TasksPage, якщо потрібно */}
+          {/* <Route path="/tasks" element={<TasksPage />} /> */}
         </Route>
       </Routes>
     </Router>

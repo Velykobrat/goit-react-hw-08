@@ -5,7 +5,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://connections-api.goit.global';
 
 // Додаємо заголовок авторизації
-const setAuthHeader = (token) => {
+const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -29,10 +29,10 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
 export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const response = await axios.post('/users/login', credentials);
-    setAuthHeader(response.data.token);
+    setAuthHeader(response.data.token);  // Додайте цей рядок для збереження токена після логіну
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
@@ -41,13 +41,14 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     clearAuthHeader();
+    thunkAPI.dispatch(clearContacts()); // Очищення контактів при логауті
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 // Refresh user by token
-export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
 
@@ -63,6 +64,3 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunk
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// Експорт функцій
-export { fetchCurrentUser as refreshUser };

@@ -1,9 +1,11 @@
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux/auth/operations';
 import css from './LoginForm.module.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const LoginForm = () => {
       .unwrap()
       .then(() => {
         console.log('login success');
+        navigate('/contacts'); // Перенаправлення на правильний шлях після успішного логіну
       })
       .catch(() => {
         console.log('login error');
