@@ -1,15 +1,40 @@
+/* SearchBox.module.css */
 .searchBox {
     margin-bottom: 20px;
-}
-
-.searchBox label {
     display: flex;
-    flex-direction: column;
-    font-weight: bold;
+    justify-content: center;
+    /* Центрує форму по горизонталі */
 }
 
 .searchBox input {
-    padding: 8px;
+    padding: 10px;
     font-size: 16px;
-    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    /* Легкий фон для поля */
+    color: #333;
+    /* Колір тексту */
+}
+
+.searchBox input::placeholder {
+    color: #999;
+    /* Колір тексту placeholder */
+    opacity: 1;
+    /* Задає повну непрозорість для placeholder */
+}
+
+.searchBox input:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+    /* Білий фон при фокусі */
+}
+
+.searchBox input:focus::placeholder {
+    color: transparent;
+    /* Робить placeholder прозорим при фокусі */
 }

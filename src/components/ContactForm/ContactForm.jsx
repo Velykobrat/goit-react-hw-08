@@ -5,12 +5,12 @@ import styles from './ContactForm.module.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setPhone] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     setName('');
     setPhone('');
   };
@@ -27,7 +27,7 @@ const ContactForm = () => {
       <input
         type="text"
         placeholder="Phone"
-        value={phone}
+        value={number}
         onChange={(e) => setPhone(e.target.value)}
         className={styles.input}
       />

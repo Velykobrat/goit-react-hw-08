@@ -1,23 +1,24 @@
+/* ContactForm.module.css */
 .form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* Центрує форму по горизонталі */
     margin-bottom: 20px;
-    border: 2px solid;
-    border-radius: 5px;
     padding: 20px;
     gap: 10px;
-}
-
-.label {
-    font-size: 1rem;
-    color: #555;
+    background-color: #8ac932;
+    /* Додає легкий фон */
+    border-radius: 5px;
 }
 
 .input {
-    margin-bottom: 15px;
     padding: 10px;
     font-size: 1rem;
-    width: 300px;
+    width: 100%;
+    /* Робить поля вводу гнучкими */
+    max-width: 400px;
+    /* Задає максимальну ширину */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -30,8 +31,11 @@
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    color: white;
     transition: background-color 0.3s ease;
+    width: 100%;
+    /* Робить кнопку гнучкою */
+    max-width: 400px;
+    /* Задає максимальну ширину */
 }
 
 .button:hover {

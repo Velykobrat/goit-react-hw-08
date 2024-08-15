@@ -42,7 +42,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     localStorage.removeItem('token');
     clearAuthHeader();
-    thunkAPI.dispatch(clearContacts()); // Переконайтеся, що clearContacts існує
+    thunkAPI.dispatch(clearContacts()); // Очистити контакти при логауті
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

@@ -1,12 +1,22 @@
-import React from 'react';
+// ContactList.jsx
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/operations';
+import { fetchContacts, deleteContact } from '../../redux/contacts/operations';
 import { selectFilteredContacts } from '../../redux/contacts/slice'; 
 import styles from './ContactList.module.css';
 
 const ContactList = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
+  const filteredContacts = useSelector(selectFilteredContacts);
+
+  useEffect(() => {
+    console.log('Fetching contacts...');
+    dispatch(fetchContacts()); // Завантаження контактів при монтуванні
+  }, [dispatch]);
+
+  if (filteredContacts.length === 0) {
+    return <p>No contacts available</p>; // Відображення повідомлення, якщо контактів немає
+  }
 
   return (
     <ul className={styles.contactList}>
