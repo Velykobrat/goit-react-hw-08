@@ -8,12 +8,12 @@ const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <nav>
-      <NavLink className={css.link} to="/">
+    <nav className={css.nav}>
+      <NavLink className={`${css.link} ${css.homeLink}`} to="/">
         Home
       </NavLink>
       {isLoggedIn && (
-        <NavLink className={css.link} to="/contacts"> {/* Заміна на '/contacts' */}
+        <NavLink className={css.link} to="/contacts">
           Contacts
         </NavLink>
       )}

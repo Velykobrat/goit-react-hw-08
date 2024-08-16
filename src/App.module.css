@@ -2,10 +2,8 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
-  /* Центрує контейнер по горизонталі */
   padding: 20px;
   text-align: center;
-  /* Центрує текст всередині контейнера */
 }
 
 .title {

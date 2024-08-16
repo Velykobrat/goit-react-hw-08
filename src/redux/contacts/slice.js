@@ -1,5 +1,4 @@
-// src/redux/contacts/slice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
 const contactsSlice = createSlice({
@@ -8,10 +7,14 @@ const contactsSlice = createSlice({
     items: [],
     loading: false,
     error: null,
+    filter: '', // Додаємо поле фільтра
   },
   reducers: {
     clearContacts(state) {
       state.items = []; // Очищення списку контактів
+    },
+    setFilter(state, action) {
+      state.filter = action.payload; // Оновлюємо значення фільтра
     },
   },
   extraReducers: (builder) => {
@@ -21,7 +24,6 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        console.log('Contacts fetched:', action.payload); // Логування контактів
         state.loading = false;
         state.items = action.payload;
       })
@@ -56,8 +58,23 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { clearContacts } = contactsSlice.actions;
+export const { clearContacts, setFilter } = contactsSlice.actions;
 
-export const selectFilteredContacts = (state) => state.contacts.items;
+// Selectors
+export const selectContacts = (state) => state.contacts.items;
+export const selectFilter = (state) => state.filters.name;
+
+// Мемоізований селектор для фільтрації контактів за ім'ям або номером телефону
+export const selectFilteredContacts = createSelector(
+  [selectContacts, selectFilter],
+  (contacts, filter) => {
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(({ name, number }) => 
+      name.toLowerCase().includes(normalizedFilter) ||
+      number.includes(normalizedFilter)
+    );
+  }
+);
 
 export default contactsSlice.reducer;

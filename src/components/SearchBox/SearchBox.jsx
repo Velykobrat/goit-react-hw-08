@@ -12,12 +12,13 @@ function SearchBox() {
 
   return (
     <div className={styles.searchBox}>
-      <label>
-        Find contacts by name:
-        <input type="text" value={filter} onChange={handleFilterChange} />
-      </label>
+      <input
+        type="text"
+        value={filter}
+        onChange={handleFilterChange}
+        placeholder="Find contacts here"
+      />
     </div>
   );
 }
-
 export default SearchBox;
