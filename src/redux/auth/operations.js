@@ -1,7 +1,7 @@
 // src/redux/auth/operations.js
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { clearContacts } from '../contacts/slice'; // Перевірте правильність цього шляху та експорт
+import { clearContacts } from '../contacts/slice';
 
 axios.defaults.baseURL = 'https://connections-api.goit.global';
 
