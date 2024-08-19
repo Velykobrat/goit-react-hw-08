@@ -1,5 +1,5 @@
 import React from 'react';
-import RegistrationForm from '../components/RegistrationForm/RegisterForm';
+import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 
 const RegistrationPage = () => {
   const headingStyle = {

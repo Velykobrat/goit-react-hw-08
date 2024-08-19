@@ -6,7 +6,7 @@ import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
 
 const AppBar = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn); // Перевірте, чи є це правильний доступ до стану
+  const isLoggedIn = useSelector(selectIsLoggedIn); // Використовуємо селектор
 
   return (
     <header>
